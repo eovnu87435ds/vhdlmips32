@@ -8,8 +8,6 @@ entity control is
 		ALUOp:out std_logic_vector(1 down to 0));	-- Tells the ALU Control what to do.
 end control;
 
--- also implement addi ori and so on.
-
 architecture behavioral of control is
 begin
 	process()
@@ -113,6 +111,8 @@ begin
 			ALUSrc<='1';
 			RegWrite<='0';
 			ALUOp<='00';
+		else
+			-- No recognizable opcode!
 		end if;
 	end process;
 end behavioral;
