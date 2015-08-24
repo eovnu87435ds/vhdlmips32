@@ -5,7 +5,7 @@
 * ~~Instruction Memory~~
 * ~~Data Memory~~
 * Register
-* (J) ALU Control / +4 / ALU Add
+* ~~ALU Control / +4 / ALU Add~~
 * ~~Control~~
 * ~~Shift Left 2~~
 * ~~MUX~~
