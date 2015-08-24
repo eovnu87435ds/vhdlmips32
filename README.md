@@ -7,7 +7,7 @@
 * Register
 * (J) ALU Control / +4 / ALU Add
 * ~~Control~~
-* (C) Shift Left 2
-* (M) MUX
-* (C) PC
+* ~~Shift Left 2~~
+* ~~MUX~~
+* ~~PC~~
 * (C) Sign Extend
