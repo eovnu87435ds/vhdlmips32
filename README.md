@@ -10,4 +10,4 @@
 * ~~Shift Left 2~~
 * ~~MUX~~
 * ~~PC~~
-* (C) Sign Extend
+* ~~Sign Extend~~
