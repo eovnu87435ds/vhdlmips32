@@ -12,7 +12,6 @@ use ieee.std_logic_unsigned.all;
 entity ins_memory is
 	port (
 		address: in STD_LOGIC_VECTOR (31 downto 0);
-		ck: in STD_LOGIC;
 		read_instruction: out STD_LOGIC_VECTOR (31 downto 0)
 	);
 end ins_memory;
@@ -57,8 +56,8 @@ signal data_mem: instruction_array := (
     X"00000000");
 
 begin
-
-read_instruction <= data_mem(conv_integer(address(6 downto 2))); -- I think this is all that's needed -Mike
-
-
+	process(address)	-- Only execute on a change in address.
+	begin
+		read_instruction <= data_mem(conv_integer(address(6 downto 2))); -- I think this is all that's needed -Mike
+	end process;
 end behavioral;

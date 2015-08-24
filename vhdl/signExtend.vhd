@@ -8,7 +8,7 @@ end signExtend;
 
 architecture behavioral of signExtend is
 begin
-	process()
+	process(read_instruction)	-- Depends on the change in read_instruction.
 	begin
 		-- Extend the 16-bit number to a 32-bit number by resizing the instruction
 		-- to the length of the logic vector signOut.

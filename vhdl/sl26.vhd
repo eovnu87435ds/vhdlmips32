@@ -12,9 +12,7 @@ begin
 	process()
 	begin
 		jmpAddr<=std_logic_vector(resize(read_instruction), jmpaddr'length);
-		jmpAddr sll 2;
-		
-		-- Take care of the four bits from the pc + 4.
-		
+		jmpAddr sll 2;	-- needs to be a 28 bit number.
+		jmpAddr(31 down to 28)<=pcPlus4;	-- Take care of the four bits from the pc + 4.
 	end process;
 end behavioral;
