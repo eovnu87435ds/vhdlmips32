@@ -9,7 +9,7 @@ end sl26;
 
 architecture behavioral of sl26 is
 begin
-	process()
+	process(read_instruction, pcPlus4)
 	begin
 		jmpAddr<=std_logic_vector(resize(read_instruction), jmpaddr'length);
 		jmpAddr sll 2;	-- needs to be a 28 bit number.
