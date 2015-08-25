@@ -10,7 +10,7 @@ end control;
 
 architecture behavioral of control is
 begin
-	process()
+	process(opcode)
 	begin
 		-- Depending on the opcode, set the control signals accordingly.
 		if opcode="000000" then	-- R type instruction (add, and, jr, nor, or, slt, sll, srl, sub)

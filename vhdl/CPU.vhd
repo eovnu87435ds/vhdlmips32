@@ -106,8 +106,7 @@ component sl32 is
 end component;
 
 begin
-	process()
-	begin
-		
-	end process;
+
+
+
 end behavioral;
