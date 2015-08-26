@@ -7,7 +7,7 @@ entity ALU is
 		ReadData1, ReadData2: in STD_LOGIC_VECTOR(31 downto 0); --Input values to operate on
 		ALUCont: in STD_LOGIC_VECTOR(3 downto 0); --4 bit control signal to ALU
 		ALUResult: out STD_LOGIC_VECTOR (31 downto 0); --ALU output value
-		Zero: out STD_LOGIC --Bit to set if branch is to be taken
+		Zero: out STD_LOGIC; --Bit to set if branch is to be taken
 	);
 end ALU;
 

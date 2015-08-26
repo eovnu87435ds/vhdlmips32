@@ -4,9 +4,9 @@ use IEEE.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 entity Mux5 is
 	port (
-		zero5,one5 : in STD_LOGIC_VECTOR(4 downto 0);
+		zero5,one5 : in STD_LOGIC_VECTOR(31 downto 28);
 		sel5 : in STD_LOGIC;
-		muxout5 : out STD_LOGIC_VECTOR(4 downto 0));
+		muxout5 : out STD_LOGIC_VECTOR(31 downto 28));
 end Mux5;
 
 architecture behavioral of Mux5 is

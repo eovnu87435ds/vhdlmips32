@@ -4,10 +4,10 @@ use IEEE.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 entity control is
-	port(opcode:in std_logic_vector(5 downto 0);	-- Will receive an input, opcode, from the instruction.
+	port(opcode:in std_logic_vector(5 down to 0);	-- Will receive an input, opcode, from the instruction.
 		-- Outputs the following control signals, they are all true or false except ALUOp.
 		RegDST, Jump, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite:out std_logic;
-		ALUOp:out std_logic_vector(1 downto 0));	-- Tells the ALU Control what to do.
+		ALUOp:out std_logic_vector(1 down to 0));	-- Tells the ALU Control what to do.
 end control;
 
 architecture behavioral of control is

@@ -129,7 +129,7 @@ begin
 	ALUMux: Mux32 port map(ReadData2, signOut, ALUSrc, aluMuxout);	-- Good to go
 	memMux: Mux32 port map(ALUResult, read_data, MemtoReg, 	memMuxout);
 	PCReg: PC port map(ck, jumpMuxout, PCOut);	-- Good to go
-	RegMem: RegMemory port map(read_data, instruction, RegWrite, RegDST, ck, ReadData1, ReadData2);	-- NEED TO EDIT INPUTS
+	RegMem: RegMemory port map(read_data, instruction, RegWrite, ck, ReadData1, ReadData2);	-- NEED TO EDIT INPUTS
 	ImmSignExt: signExtend port map(instruction(15 downto 0), signOut);	-- Good to go
 	JumpSL: sl26 port map(instruction(25 downto 0), pcPlus4(31 downto 28), jmpAddr);	-- Good to go
 	ImmSL: sl32 port map(signOut, BranchAddress);

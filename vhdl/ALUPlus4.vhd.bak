@@ -16,6 +16,8 @@ signal one: std_logic_vector(31 downto 0);
 
 begin
 
+one<=(0=>'1', others=>'0');
+
 add_four: process(PCOut)
 	begin
 	PCPlus4<=PCOut+1;

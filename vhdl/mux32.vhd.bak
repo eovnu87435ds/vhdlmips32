@@ -6,7 +6,7 @@ entity Mux32 is
 	port (
 		zero,one : in STD_LOGIC_VECTOR(31 downto 0);
 		sel : in STD_LOGIC;
-		muxout : out STD_LOGIC_VECTOR(31 downto 0));
+		muxout : STD_LOGIC_VECTOR(31 downto 0));
 end Mux32;
 
 architecture behavioral of Mux32 is

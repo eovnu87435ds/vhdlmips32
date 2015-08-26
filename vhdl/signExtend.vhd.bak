@@ -4,8 +4,8 @@ use IEEE.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 entity signExtend is
-	port(read_instruction:in std_logic_vector(15 downto 0);	-- Will receive instruction[15:0]
-		signOut:out std_logic_vector(31 downto 0));	-- 32-bit extended number.
+	port(read_instruction:in std_logic_vector(15 down to 0);	-- Will receive instruction[15:0]
+		signOut:out std_logic_vector(31 down to 0));	-- 32-bit extended number.
 end signExtend;
 
 architecture behavioral of signExtend is

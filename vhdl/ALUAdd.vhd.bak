@@ -17,6 +17,6 @@ begin
 add_branch: process(PCPlus4, BranchAddress)
 	begin
 	PCBranch<=PCPlus4+BranchAddress;
-end process add_branch;
+end process add_four;
 
 end behavioral;

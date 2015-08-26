@@ -13,6 +13,6 @@ architecture behavioral of sl32 is
 begin
 	process(signOut)
 	begin
-		BranchAddress<=signOut(29 downto 0) & "00";
+		BranchAddress<=signOut sll 2;
 	end process;
 end behavioral;

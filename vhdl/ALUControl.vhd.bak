@@ -28,7 +28,6 @@ update_ALU: process(Funct, ALUOp)
 			when "100100"=> ALUCont<="0000"; --and
 			when "100101"=> ALUCont<="0001"; --or
 			when "101010"=> ALUCont<="0111"; --slt
-			when others=>null;
 		end case;
 	elsif ALUOp="11" then
 		ALUCont<="0001"; --ori

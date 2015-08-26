@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity sl26 is
 	port(read_instruction:in std_logic_vector(25 downto 0);	-- Will receive a 25-bit value from instruction memory
-		pcPlus4:in std_logic_vector(31 downto 28);	-- From the pc+4 ALU.
+		pcPlus4:in std_logic_vector(31 downto 28;)	-- From the pc+4 ALU.
 		jmpAddr:out std_logic_vector(31 downto 0));	-- Jump address if needed.
 end sl26;
 
