@@ -38,6 +38,12 @@ component ALUPlus4 is
 		);
 end component;
 
+component andGate is
+	port(
+		Branch, Zero: in std_logic;
+		andVal: out std_logic);
+end component;
+
 component control is
 	port(opcode:in std_logic_vector(5 downto 0);	-- Will receive an input, opcode, from the instruction.
 		-- Outputs the following control signals, they are all true or false except ALUOp.
@@ -64,14 +70,14 @@ component Mux32 is
 	port (
 		zero,one : in STD_LOGIC_VECTOR(31 downto 0);
 		sel : in STD_LOGIC;
-		muxout : STD_LOGIC_VECTOR(31 downto 0));
+		muxout : out STD_LOGIC_VECTOR(31 downto 0));
 end component;
 
 component Mux5 is
 	port (
 		zero5,one5 : in STD_LOGIC_VECTOR(4 downto 0);
 		sel5 : in STD_LOGIC;
-		muxout5 : STD_LOGIC_VECTOR(4 downto 0));
+		muxout5 : out STD_LOGIC_VECTOR(4 downto 0));
 end component;
 
 component PC is	-- added ck

@@ -38,6 +38,12 @@ component ALUPlus4 is
 		);
 end component;
 
+component andGate is
+	port(
+		Branch, Zero: in std_logic;
+		andVal: out std_logic);
+end component;
+
 component control is
 	port(opcode:in std_logic_vector(5 downto 0);	-- Will receive an input, opcode, from the instruction.
 		-- Outputs the following control signals, they are all true or false except ALUOp.
@@ -71,7 +77,7 @@ component Mux5 is
 	port (
 		zero5,one5 : in STD_LOGIC_VECTOR(4 downto 0);
 		sel5 : in STD_LOGIC;
-		muxout5 : STD_LOGIC_VECTOR(4 downto 0));
+		muxout5 : out STD_LOGIC_VECTOR(4 downto 0));
 end component;
 
 component PC is	-- added ck
@@ -129,7 +135,7 @@ begin
 	ALUMux: Mux32 port map(ReadData2, signOut, ALUSrc, aluMuxout);	-- Good to go
 	memMux: Mux32 port map(ALUResult, read_data, MemtoReg, 	memMuxout);
 	PCReg: PC port map(ck, jumpMuxout, PCOut);	-- Good to go
-	RegMem: RegMemory port map(read_data, instruction, RegWrite, ck, ReadData1, ReadData2);	-- NEED TO EDIT INPUTS
+	RegMem: RegMemory port map(read_data, instruction, RegWrite, RegDST, ck, ReadData1, ReadData2);	-- NEED TO EDIT INPUTS
 	ImmSignExt: signExtend port map(instruction(15 downto 0), signOut);	-- Good to go
 	JumpSL: sl26 port map(instruction(25 downto 0), pcPlus4(31 downto 28), jmpAddr);	-- Good to go
 	ImmSL: sl32 port map(signOut, BranchAddress);
