@@ -12,6 +12,6 @@ begin
 	begin
 		-- Extend the 16-bit number to a 32-bit number by resizing the instruction
 		-- to the length of the logic vector signOut.
-		signOut<=std_logic_vector(resize(read_instruction), signOut'length);
+		signOut<="0000000000000000" & read_instruction;
 	end process;
 end behavioral;

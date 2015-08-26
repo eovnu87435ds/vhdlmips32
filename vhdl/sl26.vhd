@@ -8,11 +8,14 @@ entity sl26 is
 end sl26;
 
 architecture behavioral of sl26 is
+
+signal temp: std_logic_vector(27 downto 0);
+
 begin
 	process(read_instruction, pcPlus4)
 	begin
-		jmpAddr<=std_logic_vector(resize(read_instruction), jmpaddr'length);
-		jmpAddr sll 2;	-- needs to be a 28 bit number.
-		jmpAddr(31 down to 28)<=pcPlus4;	-- Take care of the four bits from the pc + 4.
+		temp<=read_instruction & "00";
+		jmpAddr(27 downto 0)<=temp; -- needs to be a 28 bit number.
+		jmpAddr(31 downto 28)<=pcPlus4;	-- Take care of the four bits from the pc + 4.
 	end process;
 end behavioral;

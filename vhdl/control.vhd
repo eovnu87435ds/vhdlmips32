@@ -22,7 +22,7 @@ begin
 			MemWrite<='0';
 			ALUSrc<='0';
 			RegWrite<='1';
-			ALUOp<='10';	-- two bits
+			ALUOp<="10";	-- two bits
 		
 		elsif opcode="001000" then	-- addi 8hex
 			RegDST<='0';
@@ -33,7 +33,7 @@ begin
 			MemWrite<='0';
 			ALUSrc<='1';
 			RegWrite<='1';
-			ALUOp<='00';
+			ALUOp<="00";
 			
 		-- elsif opcode="001100" then	-- andi chex
 			-- RegDST<='';
@@ -44,7 +44,7 @@ begin
 			-- MemWrite<='';
 			-- ALUSrc<='';
 			-- RegWrite<='';
-			-- ALUOp<='';
+			-- ALUOp<="";
 			
 		elsif opcode="001101" then	-- ori dhex
 			RegDST<='0';
@@ -55,7 +55,7 @@ begin
 			MemWrite<='0';
 			ALUSrc<='1';
 			RegWrite<='1';
-			ALUOp<='11';
+			ALUOp<="11";
 
 		elsif opcode<="000100" then	-- beq
 			RegDST<='0';
@@ -66,7 +66,7 @@ begin
 			MemWrite<='0';
 			ALUSrc<='0';
 			RegWrite<='0';
-			ALUOp<='01';
+			ALUOp<="01";
 
 		-- elsif opcode<="000101" then	-- bne This is EXTRA CREDIT
 			-- RegDST<='';
@@ -77,18 +77,18 @@ begin
 			-- MemWrite<='';
 			-- ALUSrc<='';
 			-- RegWrite<='';
-			-- ALUOp<='01';
+			-- ALUOp<="01";
 		
 		elsif opcode<="000010" then	-- j
 			RegDST<='0';
 			Jump<='1';
 			Branch<='0';
 			MemRead<='0';
-			MemtoReg<=''0;
+			MemtoReg<='0';
 			MemWrite<='0';
 			ALUSrc<='0';
 			RegWrite<='0';
-			ALUOp<='00';
+			ALUOp<="00";
 
 		elsif opcode<="100011" then	-- lw
 			RegDST<='0';
@@ -99,7 +99,7 @@ begin
 			MemWrite<='0';
 			ALUSrc<='1';
 			RegWrite<='1';
-			ALUOp<='00';
+			ALUOp<="00";
 
 		elsif opcode<="101011" then	-- sw
 			RegDST<='0';
@@ -110,7 +110,7 @@ begin
 			MemWrite<='1';
 			ALUSrc<='1';
 			RegWrite<='0';
-			ALUOp<='00';
+			ALUOp<="00";
 		else
 			-- No recognizable opcode!
 		end if;
