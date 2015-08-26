@@ -12,10 +12,18 @@ end PC;
 architecture behavioral of PC is
 begin
 	process(ck)
+	variable initAddress: std_logic_vector(31 downto 0);
+	variable isFirstCycle: integer:=1;
 	begin
-		if ck='1' and ck'event then 
-			-- Increment the program count. Has to be 4 byte aligned due to the 32-bit architecture.
-			progCount<=address;
+		if isFirstCycle=1 then
+			initAddress:=(others=>'0'); -- Initialize PC to 0 on first clock cycle
+		else
+			initAddress:=address;
+		end if;
+		
+		if ck='1' and ck'event then
+			isFirstCycle:=0;
+			progCount<=initAddress;
 		end if;
 	end process;
 end behavioral;

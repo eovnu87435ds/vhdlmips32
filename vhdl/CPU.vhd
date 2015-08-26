@@ -1,5 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
 
 entity CPU is
 	port(ck:in std_logic);
@@ -112,8 +114,7 @@ end component;
 
 -- Declaration of all the signals!
 signal instruction:std_logic_vector(31 downto 0);	-- 32-bit MIPS instruction.
-signal ReadData1, ReadData2, ALUResult,	PCPlus4, BranchAddress, PCBranch, PCOut, read_data, progCount, signOut, jmpAddr:std_logic_vector(31 downto 0);
-signal opcode:std_logic_vector(5 downto 0);
+signal ReadData1, ReadData2, ALUResult,	PCPlus4, BranchAddress, PCBranch, read_data, PCOut, progCount, signOut, jmpAddr:std_logic_vector(31 downto 0);
 signal WriteRegMuxOut: std_logic_vector(4 downto 0);
 signal branchMuxout, jumpMuxout, aluMuxout, memMuxout:std_logic_vector(31 downto 0);
 signal ALUCont:std_logic_vector(3 downto 0);
@@ -121,22 +122,22 @@ signal ALUOp:std_logic_vector(1 downto 0);
 signal Zero, Branch, RegDST, Jump, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, andVal:std_logic;
 
 begin
-	ALUMain: ALU port map(ReadData1, aluMuxout, ALUCont, ALUResult, Zero);	-- Good to go
-	ALUBranch: ALUAdd port map(PCPlus4, BranchAddress, PCBranch);	-- Good to go
+	ALUMain: ALU port map(ReadData1, aluMuxout, ALUCont, 	ALUResult, Zero);	-- Good to go
+	ALUBranch: ALUAdd port map(PCPlus4, BranchAddress, 	PCBranch);	-- Good to go
 	ALUContSig: ALUControl port map(instruction(5 downto 0), ALUOp, 	ALUCont);	-- Good to go
-	PC4: ALUPlus4 port map(PCOut, PCPlus4);	-- Good to go
-	BranchAnd: andGate port map(Branch, Zero, andVal);	-- Good to go
-	ContSig: control port map(opcode, RegDST, Jump, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, ALUOp);	-- Good to go
-	InstructMem: ins_memory port map(PCOut,	instruction);	-- Good to go
-	DataMem: memory port map(ALUResult, ReadData2, MemWrite, MemRead, ck, read_data);	-- Good to go
-	WriteRegMux: Mux5 port map(instruction(20 downto 16), instruction(15 downto 11), RegDST, WriteRegMuxOut);	-- Good to go
-	jumpMux: Mux32 port map(branchMuxout, jmpAddr, Jump, jumpMuxout);	-- Good to go
-	branchMux: Mux32 port map(PCPlus4, PCBranch, andVal, branchMuxout);	-- Good to go
-	ALUMux: Mux32 port map(ReadData2, signOut, ALUSrc, aluMuxout);	-- Good to go
+	PC4: ALUPlus4 port map(PCOut, 	PCPlus4);	-- Good to go
+	BranchAnd: andGate port map(Branch, Zero, 	andVal);	-- Good to go
+	ContSig: control port map(instruction(31 downto 26), RegDST, Jump, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, ALUOp);	-- Good to go
+	InstructMem: ins_memory port map(PCOut,		instruction);	-- Good to go
+	DataMem: memory port map(ALUResult, ReadData2, MemWrite, MemRead, ck, 	read_data);	-- Good to go
+	WriteRegMux: Mux5 port map(instruction(20 downto 16), instruction(15 downto 11), RegDST, 	WriteRegMuxOut);	-- Good to go
+	jumpMux: Mux32 port map(branchMuxout, jmpAddr, Jump, 	jumpMuxout);	-- Good to go
+	branchMux: Mux32 port map(PCPlus4, PCBranch, andVal, 	branchMuxout);	-- Good to go
+	ALUMux: Mux32 port map(ReadData2, signOut, ALUSrc, 	aluMuxout);	-- Good to go
 	memMux: Mux32 port map(ALUResult, read_data, MemtoReg, 	memMuxout);
-	PCReg: PC port map(ck, jumpMuxout, PCOut);	-- Good to go
-	RegMem: RegMemory port map(read_data, instruction, RegWrite, RegDST, ck, ReadData1, ReadData2);	-- NEED TO EDIT INPUTS
-	ImmSignExt: signExtend port map(instruction(15 downto 0), signOut);	-- Good to go
-	JumpSL: sl26 port map(instruction(25 downto 0), pcPlus4(31 downto 28), jmpAddr);	-- Good to go
-	ImmSL: sl32 port map(signOut, BranchAddress);
+	PCReg: PC port map(ck, jumpMuxout, 	PCOut);	-- Good to go
+	RegMem: RegMemory port map(read_data, instruction, RegWrite, RegDST, ck, 	ReadData1, ReadData2);	-- NEED TO EDIT INPUTS
+	ImmSignExt: signExtend port map(instruction(15 downto 0), 	signOut);	-- Good to go
+	JumpSL: sl26 port map(instruction(25 downto 0), pcPlus4(31 downto 28), 	jmpAddr);	-- Good to go
+	ImmSL: sl32 port map(signOut, 	BranchAddress);
 end behavioral;
